@@ -59,6 +59,7 @@ The repository is a pnpm workspace coordinated by Turborepo; upstream owns its m
 - `issues/ISSUE-NNN.md` owns the complete durable record for one root cause.
 - `FORMAT.md` owns research, drafting, implementation authorization, approval, and publication rules.
 - Prefer small, well-scoped corrections with outsized maintainer or user value.
+- Reports must be decision-ready: minimal reproduction, affected versions, actual impact, and a narrowly scoped correction.
 - Recommend a pull request when a bounded verified fix is ready and no active implementation owns it.
 - Otherwise recommend a comment, a new issue, or continued investigation according to the evidence.
 - Apply `skill-fork-contribution-tracking` for ledger, lifecycle, personal-branch, and upstream handoff work.
