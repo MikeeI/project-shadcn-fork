@@ -7,7 +7,7 @@ This file owns `Next finding ID` and projects current issue-file state.
 `Next-Action` is the 2–6 word `Next-Action/Summary` projection from the issue record.
 When a row disagrees with its issue file, correct the row from the issue file in the same task.
 
-Next finding ID: ISSUE-024
+Next finding ID: ISSUE-034
 
 ## Open-Findings
 
@@ -36,6 +36,16 @@ Next finding ID: ISSUE-024
 | [ISSUE-021](issues/ISSUE-021.md) | init: restore removes bak text from a parent directory | Investigating | Not-Selected | Not-Selected | High | Reproduce bak parent recovery | Not published. |
 | [ISSUE-022](issues/ISSUE-022.md) | init: explicit base is lost for non-URL component arguments | Investigating | Not-Selected | Not-Selected | Medium | Reproduce non-URL base loss | Not published. |
 | [ISSUE-023](issues/ISSUE-023.md) | init: existing Next apps receive new-project CSS cleanup | Investigating | Not-Selected | Not-Selected | High | Reproduce existing Next cleanup | Not published. |
+| [ISSUE-024](issues/ISSUE-024.md) | css: Tailwind v3 ignores the preserve-existing-variables option | Investigating | Not-Selected | Not-Selected | Medium | Reproduce v3 variable overwrite | Not published. |
+| [ISSUE-025](issues/ISSUE-025.md) | css: unrelated custom variants suppress dark selector registration | Investigating | Not-Selected | Not-Selected | Medium | Reproduce missing dark variant | Not published. |
+| [ISSUE-026](issues/ISSUE-026.md) | css: prefixed light and dark keys generate double-prefixed references | Investigating | Not-Selected | Not-Selected | Medium | Reproduce prefixed variable reference | Not published. |
+| [ISSUE-027](issues/ISSUE-027.md) | fonts: Next Pages reports success without a usable layout integration | Investigating | Not-Selected | Not-Selected | Medium | Reproduce Pages font success | Not published. |
+| [ISSUE-028](issues/ISSUE-028.md) | fonts: an existing import suppresses the requested root variable | Investigating | Not-Selected | Not-Selected | Medium | Reproduce imported font omission | Not published. |
+| [ISSUE-029](issues/ISSUE-029.md) | fonts: aliased imports produce an unbound generated call | Investigating | Not-Selected | Not-Selected | High | Reproduce aliased font binding | Not published. |
+| [ISSUE-030](issues/ISSUE-030.md) | fonts: stylesheet support cache survives later font installation | Investigating | Not-Selected | Not-Selected | Medium | Reproduce stale heading support | Not published. |
+| [ISSUE-031](issues/ISSUE-031.md) | tailwind: shorthand content prevents configuration discovery | Investigating | Not-Selected | Not-Selected | Medium | Reproduce shorthand config omission | Not published. |
+| [ISSUE-032](issues/ISSUE-032.md) | scaffold: React Router monorepo retains the template font | Investigating | Not-Selected | Not-Selected | Medium | Reproduce scaffold font mismatch | Not published. |
+| [ISSUE-033](issues/ISSUE-033.md) | scaffold: canceled project prompts fall through to defaults | Investigating | Not-Selected | Not-Selected | Medium | Reproduce canceled project creation | Not published. |
 
 ## Archived-Findings
 
