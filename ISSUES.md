@@ -7,7 +7,7 @@ This file owns `Next finding ID` and projects current issue-file state.
 `Next-Action` is the 2–6 word `Next-Action/Summary` projection from the issue record.
 When a row disagrees with its issue file, correct the row from the issue file in the same task.
 
-Next finding ID: ISSUE-062
+Next finding ID: ISSUE-076
 
 ## Open-Findings
 
@@ -74,6 +74,20 @@ Next finding ID: ISSUE-062
 | [ISSUE-059](issues/ISSUE-059.md) | mcp: item detail output returns file count instead of contents | Investigating | Not-Selected | Not-Selected | Medium | Reproduce missing MCP source | Not published. |
 | [ISSUE-060](issues/ISSUE-060.md) | mcp: example search hides partial registry failures | Investigating | Not-Selected | Not-Selected | Medium | Reproduce hidden example failure | Not published. |
 | [ISSUE-061](issues/ISSUE-061.md) | mcp: generated add commands do not quote item arguments | Investigating | Not-Selected | Not-Selected | Medium | Reproduce MCP shell arguments | Not published. |
+| [ISSUE-062](issues/ISSUE-062.md) | proxy: empty destination ports become zero in SOCKS connections | Investigating | Not-Selected | Not-Selected | Medium | Reproduce SOCKS default ports | Not published. |
+| [ISSUE-063](issues/ISSUE-063.md) | proxy: HTTPS over SOCKS returns a raw TCP socket | Investigating | Not-Selected | Not-Selected | Medium | Reproduce SOCKS HTTPS failure | Not published. |
+| [ISSUE-064](issues/ISSUE-064.md) | proxy: SOCKS dispatch ignores documented NO_PROXY exceptions | Investigating | Not-Selected | Not-Selected | Medium | Reproduce SOCKS bypass omission | Not published. |
+| [ISSUE-065](issues/ISSUE-065.md) | resolver: cache bypass is lost in the Base-Color helper | Investigating | Not-Selected | Not-Selected | Medium | Reproduce stale Base Color | Not published. |
+| [ISSUE-066](issues/ISSUE-066.md) | registry: URL normalization disconnects configured request headers | Investigating | Not-Selected | Not-Selected | Medium | Reproduce normalized header loss | Not published. |
+| [ISSUE-067](issues/ISSUE-067.md) | registry: malformed JSON error bodies hide typed HTTP failures | Investigating | Not-Selected | Not-Selected | Medium | Reproduce malformed error masking | Not published. |
+| [ISSUE-068](issues/ISSUE-068.md) | command menu: global copy handles stale state after dialog close | Investigating | Not-Selected | Not-Selected | Medium | Reproduce stale menu copy | Not published. |
+| [ISSUE-069](issues/ISSUE-069.md) | command menu: npm preference generates unsupported npm dlx | Investigating | Not-Selected | Not-Selected | Medium | Reproduce npm menu command | Not published. |
+| [ISSUE-070](issues/ISSUE-070.md) | command menu: documentation guides are assumed installable Registry items | Investigating | Not-Selected | Not-Selected | Medium | Reproduce guide install recommendation | Not published. |
+| [ISSUE-071](issues/ISSUE-071.md) | command block: copy indicator succeeds before clipboard result | Investigating | Not-Selected | Not-Selected | Medium | Reproduce false copy success | Not published. |
+| [ISSUE-072](issues/ISSUE-072.md) | mcp: example output omits declared dependency categories | Investigating | Not-Selected | Not-Selected | Low | Reproduce missing example dependencies | Not published. |
+| [ISSUE-073](issues/ISSUE-073.md) | registry: appended query parameters land after URL fragments | Investigating | Not-Selected | Not-Selected | Low | Reproduce fragment query loss | Not published. |
+| [ISSUE-074](issues/ISSUE-074.md) | registry: generic HTTP errors hide supplied server messages in CLI output | Investigating | Not-Selected | Not-Selected | Low | Reproduce hidden server detail | Not published. |
+| [ISSUE-075](issues/ISSUE-075.md) | github: raw file buffer overflow is reported as a network failure | Investigating | Not-Selected | Not-Selected | Low | Reproduce gh oversize classification | Not published. |
 
 ## Archived-Findings
 
