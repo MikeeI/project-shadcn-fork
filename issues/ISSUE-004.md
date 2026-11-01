@@ -8,17 +8,23 @@ Contribution-Priority: Medium
 Root-Cause-Confidence: High
 Finding-Category: Correctness
 Created: 2026-10-28
-Updated: 2026-10-28
-Source: `upstream/main@96da9cc7`
+Updated: 2026-11-01
+Source: `upstream/main@c0d63c339d6cd2fc26135590a54cf1f362269451`
 
 ## Root-Cause
 
-Root-Cause [S]: `updateEnvVars` writes `${key}=${value}` into the project's env file without quoting, escaping or key validation, and unlike the file writer it has no interactive gate, so a value containing a newline appends additional assignments.
+Review reference: `E39` (retained here rather than allocated a duplicate ID).
+Root-Cause [S]: `updateEnvVars` writes `${key}=${value}` without quoting, escaping or key validation.
+Embedded newlines can add assignments, while an ordinary value containing `#` can be truncated by the loader.
+The writer also lacks the interactive gate available in file installation; confirmation policy remains unresolved.
 
 ## Reach-and-Impact
 
-Reach [S]: Every install whose resolved tree carries `envVars`, on any framework, including named-registry installs with confirmation disabled.
-Impact [S]: Registry data can add environment variables the item never declared, in the highest-precedence env file Next.js reads; keys already present in the file are preserved, so no existing value is overwritten. Unmeasured boundary: whether an injected key changes application behavior depends on the consumer reading that key.
+Reach [S]: Installs whose resolved tree carries `envVars`, including named-registry installs without confirmation.
+Impact [S]: Raw values can decode differently or add assignments not declared as separate keys.
+Ordinary recognized keys in the chosen file are preserved; the export-prefix exception is owned by `ISSUE-039`.
+Application impact depends on the consumer loader and which keys the application reads.
+Boundary: the review used helper/codec observations, not a shipped CLI write reproduction.
 
 ## Evidence
 
@@ -30,38 +36,49 @@ Impact [S]: Registry data can add environment variables the item never declared,
 - [S] `packages/registry/src/env-helpers.ts:74-99` — `mergeEnvContent` appends only keys absent from the existing file, which bounds the impact to new keys.
 - [S] `packages/registry/src/add-components.ts:108-110` — `updateEnvVars` runs before `updateFiles` and before the stylesheet write.
 - [S] `apps/v4/content/docs/registry/examples.mdx:963-986` — the docs present `envVars` with concrete values and warn only against production variables.
+- [S] Unquoted hash handling in the supported dotenv parser: https://unpkg.com/dotenv@17.2.1/lib/main.js
+- [S] The separate merge defect in `ISSUE-040` can destroy newly correct encoding and must be coordinated.
 
 ## Prior-Art
 
 Coverage: issues(open+closed), PRs(open+closed+merged), releases, GitHub advisory REST for npm `shadcn` and `@shadcn/registry`; checked=2026-10-28.
-Gaps: no search of closed issues by the `envVars` symbol beyond title matching.
+Gaps: the symbol-specific search and the recorded 2026-10-28 coverage need refresh before publication.
 
 - `https://api.github.com/advisories?ecosystem=npm&affects=shadcn` — Distinct; returned an empty array.
 - `https://github.com/shadcn-ui/ui/pull/11191` — Related; same validation theme for file paths, different field and sink.
 
-Contribution fit: New issue — the unescaped write and the missing confirmation have no owner.
+Contribution fit: A new issue is a candidate; no owner was identified in the recorded limited search.
 
 ## Proposed-Change
 
-Validate keys against the env-identifier pattern, reject values containing newlines, quote or escape values once on write, and route the write through the same confirmation the file writer uses for non-interactive installs.
+Validate keys and encode values according to the supported Env-loader grammar before writing.
+Keep that encoding intact through the merge owned by `ISSUE-040`.
+Rejecting or encoding embedded newlines, and adding confirmation, require an explicit compatibility decision.
 
 ## Scope-and-Constraints
 
-- Preserve: the documented merge-only semantics, existing values, and the choice between `.env.local` and an existing env file.
-- Exclude: the `.env` handling in `updateFiles`, secret detection, and any change to env-file discovery.
-- Cost: rejection rules change the accepted schema surface, so published registry items with unusual values start failing.
+- Preserve: documented merge-only semantics, existing recognized values and existing target-file selection.
+- Own: object-to-Env encoding; the independently formatted Registry-file merge defect belongs to `ISSUE-040`.
+- Cost: lossless writing needs a defined loader grammar; rejection may narrow accepted Registry inputs.
+
+## API-and-Compatibility
+
+Do not equate arbitrary JSON string escaping with the supported dotenv grammar.
+Accepted values must roundtrip or fail explicitly before writes; no implementation policy is selected yet.
 
 ## Verification
 
-- `pnpm exec vitest run packages/registry/src/updaters/update-env-vars.test.ts` → a value containing a newline is rejected instead of appending a second assignment, and the documented examples still write.
+- Existing suite, not executed: `pnpm exec vitest run packages/registry/src/updaters/update-env-vars.test.ts`.
+- Planned CLI replay: install hash and multiline values into new and existing Env files.
+- Require exact consumer-decoded values or explicit prewrite rejection, never accidental extra assignments.
 
 ## Publication-Blockers
 
-- No reproduction against the shipped CLI showing the resulting env file.
-- Whether maintainers accept rejection as a breaking schema change is undecided.
+- No versioned shipped-CLI reproduction captures the resulting file and consumer-decoded value.
+- Accepted value grammar and confirmation-policy adoption remain undecided.
 
 ## Next-Action
 
-Summary: Confirm env newline injection
-Action: Run a local install with an `envVars` value containing a newline and inspect the resulting env file.
-Done-When: The written file shows either the injected assignment or the rejection, captured with the exact command and file content.
+Summary: Reproduce env value roundtrip
+Action: Install a hash-containing Env value through the CLI into new and existing target-file states.
+Done-When: Exact command, CLI/loader versions, written contents and decoded values are captured.

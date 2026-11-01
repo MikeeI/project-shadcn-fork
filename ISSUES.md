@@ -7,7 +7,7 @@ This file owns `Next finding ID` and projects current issue-file state.
 `Next-Action` is the 2–6 word `Next-Action/Summary` projection from the issue record.
 When a row disagrees with its issue file, correct the row from the issue file in the same task.
 
-Next finding ID: ISSUE-034
+Next finding ID: ISSUE-049
 
 ## Open-Findings
 
@@ -16,7 +16,7 @@ Next finding ID: ISSUE-034
 | [ISSUE-001](issues/ISSUE-001.md) | registry: empty-string target bypasses path validation | Investigating | Not-Selected | Not-Selected | High | Reproduce write escape end-to-end | Not published. |
 | [ISSUE-002](issues/ISSUE-002.md) | registry: css at-rules load build-executed JavaScript | Investigating | Not-Selected | Not-Selected | High | Verify Tailwind plugin execution locally | Not published. |
 | [ISSUE-003](issues/ISSUE-003.md) | chart: ChartStyle interpolates config into a style element unencoded | Investigating | Not-Selected | Not-Selected | High | Verify SSR style breakout | Not published. |
-| [ISSUE-004](issues/ISSUE-004.md) | registry: envVars values are written unescaped and without confirmation | Investigating | Not-Selected | Not-Selected | Medium | Confirm env newline injection | Not published. |
+| [ISSUE-004](issues/ISSUE-004.md) | registry: envVars values are written unescaped and without confirmation | Investigating | Not-Selected | Not-Selected | Medium | Reproduce env value roundtrip | Not published. |
 | [ISSUE-005](issues/ISSUE-005.md) | registry: middleware rename overwrites an existing proxy.ts unprompted | Investigating | Not-Selected | Not-Selected | High | Reproduce proxy overwrite silently | Not published. |
 | [ISSUE-006](issues/ISSUE-006.md) | registry: cssVars values are written into the stylesheet unescaped | Investigating | Not-Selected | Not-Selected | High | Confirm cssVars declaration injection | Not published. |
 | [ISSUE-007](issues/ISSUE-007.md) | mcp: failed config reads can overwrite existing client settings | Investigating | Not-Selected | Not-Selected | High | Reproduce MCP config replacement | Not published. |
@@ -46,6 +46,21 @@ Next finding ID: ISSUE-034
 | [ISSUE-031](issues/ISSUE-031.md) | tailwind: shorthand content prevents configuration discovery | Investigating | Not-Selected | Not-Selected | Medium | Reproduce shorthand config omission | Not published. |
 | [ISSUE-032](issues/ISSUE-032.md) | scaffold: React Router monorepo retains the template font | Investigating | Not-Selected | Not-Selected | Medium | Reproduce scaffold font mismatch | Not published. |
 | [ISSUE-033](issues/ISSUE-033.md) | scaffold: canceled project prompts fall through to defaults | Investigating | Not-Selected | Not-Selected | Medium | Reproduce canceled project creation | Not published. |
+| [ISSUE-034](issues/ISSUE-034.md) | dependencies: Expo receives packages after the passthrough separator | Investigating | Not-Selected | Not-Selected | Medium | Reproduce Expo argument handling | Not published. |
+| [ISSUE-035](issues/ISSUE-035.md) | dependencies: dev-only presence suppresses a runtime requirement | Investigating | Not-Selected | Not-Selected | Medium | Reproduce missing runtime promotion | Not published. |
+| [ISSUE-036](issues/ISSUE-036.md) | dependencies: overlapping Dev requests demote required runtime packages | Investigating | Not-Selected | Not-Selected | Medium | Reproduce dependency category demotion | Not published. |
+| [ISSUE-037](issues/ISSUE-037.md) | scaffold: fallback replaces a successfully detected package manager | Investigating | Not-Selected | Not-Selected | Medium | Reproduce detected manager replacement | Not published. |
+| [ISSUE-038](issues/ISSUE-038.md) | workspace: application envVars are written into the UI package | Investigating | Not-Selected | Not-Selected | Medium | Reproduce application env misrouting | Not published. |
+| [ISSUE-039](issues/ISSUE-039.md) | env: exported existing keys are duplicated during merge | Investigating | Not-Selected | Not-Selected | Medium | Reproduce exported key overwrite | Not published. |
+| [ISSUE-040](issues/ISSUE-040.md) | env: merging removes quotes required to preserve new values | Investigating | Not-Selected | Not-Selected | Medium | Reproduce env quote loss | Not published. |
+| [ISSUE-041](issues/ISSUE-041.md) | resolver: descendants reverse declared sibling override priority | Investigating | Not-Selected | Not-Selected | Medium | Reproduce sibling override reversal | Not published. |
+| [ISSUE-042](issues/ISSUE-042.md) | resolver: Theme-first resort reverses a real dependency edge | Investigating | Not-Selected | Not-Selected | Medium | Reproduce Theme edge reversal | Not published. |
+| [ISSUE-043](issues/ISSUE-043.md) | registry: namespace discovery stops before newly mapped dependencies | Investigating | Not-Selected | Not-Selected | Medium | Reproduce transitive namespace omission | Not published. |
+| [ISSUE-044](issues/ISSUE-044.md) | registry: direct catalogs bypass duplicate item-name validation | Investigating | Not-Selected | Not-Selected | Medium | Reproduce direct catalog duplicates | Not published. |
+| [ISSUE-045](issues/ISSUE-045.md) | registry: directory lookup precedes an already-configured skip | Investigating | Not-Selected | Not-Selected | Medium | Reproduce configured registry failure | Not published. |
+| [ISSUE-046](issues/ISSUE-046.md) | registry: accepted namespace names cannot be resolved later | Investigating | Not-Selected | Not-Selected | Medium | Reproduce namespace grammar mismatch | Not published. |
+| [ISSUE-047](issues/ISSUE-047.md) | registry: explicit namespace JSON items are classified as local files | Investigating | Not-Selected | Not-Selected | Medium | Reproduce namespaced JSON dispatch | Not published. |
+| [ISSUE-048](issues/ISSUE-048.md) | search: generated GitHub JSON addresses fail their consumer roundtrip | Investigating | Not-Selected | Not-Selected | Medium | Reproduce GitHub search roundtrip | Not published. |
 
 ## Archived-Findings
 
