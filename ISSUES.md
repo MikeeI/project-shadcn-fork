@@ -7,7 +7,7 @@ This file owns `Next finding ID` and projects current issue-file state.
 `Next-Action` is the 2–6 word `Next-Action/Summary` projection from the issue record.
 When a row disagrees with its issue file, correct the row from the issue file in the same task.
 
-Next finding ID: ISSUE-049
+Next finding ID: ISSUE-062
 
 ## Open-Findings
 
@@ -61,6 +61,19 @@ Next finding ID: ISSUE-049
 | [ISSUE-046](issues/ISSUE-046.md) | registry: accepted namespace names cannot be resolved later | Investigating | Not-Selected | Not-Selected | Medium | Reproduce namespace grammar mismatch | Not published. |
 | [ISSUE-047](issues/ISSUE-047.md) | registry: explicit namespace JSON items are classified as local files | Investigating | Not-Selected | Not-Selected | Medium | Reproduce namespaced JSON dispatch | Not published. |
 | [ISSUE-048](issues/ISSUE-048.md) | search: generated GitHub JSON addresses fail their consumer roundtrip | Investigating | Not-Selected | Not-Selected | Medium | Reproduce GitHub search roundtrip | Not published. |
+| [ISSUE-049](issues/ISSUE-049.md) | preview: custom path is omitted from file and import planning | Investigating | Not-Selected | Not-Selected | Medium | Reproduce custom path preview | Not published. |
+| [ISSUE-050](issues/ISSUE-050.md) | preview: bare diff and view overviews omit CSS changes | Investigating | Not-Selected | Not-Selected | Medium | Reproduce missing CSS overview | Not published. |
+| [ISSUE-051](issues/ISSUE-051.md) | preview: CSS transformation uses different context and overwrite policy | Investigating | Not-Selected | Not-Selected | Medium | Reproduce CSS preview divergence | Not published. |
+| [ISSUE-052](issues/ISSUE-052.md) | preview: workspace target configuration is not resolved | Investigating | Not-Selected | Not-Selected | Medium | Reproduce workspace preview target | Not published. |
+| [ISSUE-053](issues/ISSUE-053.md) | preview: Env files ignore alternative targets and append-only merge | Investigating | Not-Selected | Not-Selected | Medium | Reproduce Env file preview | Not published. |
+| [ISSUE-054](issues/ISSUE-054.md) | preview: applicable Tailwind v3 configuration changes are absent | Investigating | Not-Selected | Not-Selected | Medium | Reproduce missing Tailwind preview | Not published. |
+| [ISSUE-055](issues/ISSUE-055.md) | preview: Next 16 middleware lacks proxy target and export conversion | Investigating | Not-Selected | Not-Selected | Medium | Reproduce proxy preview mismatch | Not published. |
+| [ISSUE-056](issues/ISSUE-056.md) | preview: missing required CSS is incorrectly planned as creation | Investigating | Not-Selected | Not-Selected | Medium | Reproduce missing CSS promise | Not published. |
+| [ISSUE-057](issues/ISSUE-057.md) | mcp: cwd option is not forwarded to tool instances | Investigating | Not-Selected | Not-Selected | Medium | Reproduce MCP cwd loss | Not published. |
+| [ISSUE-058](issues/ISSUE-058.md) | mcp: project style and Tailwind normalization context are lost | Investigating | Not-Selected | Not-Selected | Medium | Reproduce MCP style fallback | Not published. |
+| [ISSUE-059](issues/ISSUE-059.md) | mcp: item detail output returns file count instead of contents | Investigating | Not-Selected | Not-Selected | Medium | Reproduce missing MCP source | Not published. |
+| [ISSUE-060](issues/ISSUE-060.md) | mcp: example search hides partial registry failures | Investigating | Not-Selected | Not-Selected | Medium | Reproduce hidden example failure | Not published. |
+| [ISSUE-061](issues/ISSUE-061.md) | mcp: generated add commands do not quote item arguments | Investigating | Not-Selected | Not-Selected | Medium | Reproduce MCP shell arguments | Not published. |
 
 ## Archived-Findings
 
