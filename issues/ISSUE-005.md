@@ -8,17 +8,23 @@ Contribution-Priority: High
 Root-Cause-Confidence: High
 Finding-Category: Correctness
 Created: 2026-10-28
-Updated: 2026-10-28
-Source: `upstream/main@96da9cc7`
+Updated: 2026-11-01
+Source: `upstream/main@c0d63c339d6cd2fc26135590a54cf1f362269451`
 
 ## Root-Cause
 
-Root-Cause [S]: `updateFiles` decides overwrite protection from `existsSync` on the pre-rename path, then rewrites a root `middleware.ts` to `proxy.ts` for Next 16 projects and writes to the new path, so an existing `proxy.ts` is replaced without `--overwrite` and the change is reported as a created file.
+Review reference: `E1` (retained).
+Root-Cause [S]: `updateFiles` checks overwrite protection using the pre-rename path.
+It then renames root `middleware.ts` to `proxy.ts` for Next 16 without reevaluating target existence.
+An existing `proxy.ts` can therefore be replaced and reported as created despite absent `--overwrite`.
 
 ## Reach-and-Impact
 
-Reach [S]: Any Next 16 or later project that already has a root `proxy.ts` and installs an item whose file resolves to the root `middleware.ts`; other frameworks and Next versions below 16 are unaffected because the rename is gated on the detected major version.
-Impact [S]: Silent replacement of the file where Next applications commonly enforce authentication, plus a false file-status report that makes the overwrite invisible in install output. Unmeasured boundary: no install was executed, so the overwrite is established from control flow only.
+Reach [S]: Next 16 or later projects with a root `proxy.ts` installing a file resolved as root `middleware.ts`.
+Other frameworks and detected Next versions below 16 do not enter the rename branch.
+Impact [S]: Silent replacement of existing `proxy.ts`, where Next applications commonly enforce authentication.
+The stale file-status report hides this overwrite in install output.
+Unmeasured boundary: no install was executed; overwrite is established from control flow only.
 
 ## Evidence
 
@@ -29,29 +35,33 @@ Impact [S]: Silent replacement of the file where Next applications commonly enfo
 - [S] `packages/registry/src/updaters/update-files.ts:285-294` — status is recorded from the stale `existingFile`, so the overwrite lands in `filesCreated`.
 - [S] `packages/registry/src/updaters/update-files.ts:831-852` — the rename applies only to a root `middleware.ts` in a Next project with major version 16 or higher.
 - [S] `packages/registry/src/registry/schema.ts:119-134` — an item may declare `middleware.ts` with any type that permits a `target`, so the file is attacker-choosable within the registry payload.
+- [S] Checked 2026-11-01: the updater is unchanged between `96da9cc7` and canonical `c0d63c339d6cd2fc26135590a54cf1f362269451`.
 
 ## Prior-Art
 
 Coverage: issues(open+closed), PRs(open+closed+merged), releases; checked=2026-10-28.
-Gaps: the Next 16 rename has no dedicated search term in upstream history, so related reports may exist under the `proxy.ts` rename PR.
+Gaps: the rename-specific search and the recorded 2026-10-28 coverage need refresh before publication.
 
 - `https://github.com/shadcn-ui/ui/pull/11191` — Related; same file and same validation theme, different root cause (path containment, not overwrite detection).
 
-Contribution fit: New issue — no open work owns the overwrite decision for renamed files.
+Contribution fit: A new issue is a candidate; no owner was identified in the recorded limited search.
 
 ## Proposed-Change
 
-Compute the final write path before the overwrite decision, or test both the declared and the renamed path, and use the renamed path for the status report.
+Compute the effective write path before existence checks, content comparison and prompts.
+Retain original middleware identity for `transformNext`; use the effective path for writing and status.
 
 ## Scope-and-Constraints
 
 - Preserve: the Next 16 rename itself, the framework-version gate, and `--overwrite` semantics for every other file type.
 - Exclude: the env-file merge path and path containment, which are owned by ISSUE-001 and ISSUE-004.
-- Cost: the fix touches the prompt decision that every install depends on, so the ordered loop over files must stay single-pass.
+- Cost: this shared overwrite boundary must preserve ordered processing and project/workspace routing.
 
 ## Verification
 
-- `pnpm exec vitest run packages/registry/src/updaters/update-files.test.ts` → with an existing root `proxy.ts` and an item declaring `middleware.ts`, the write prompts or is skipped, and the status lists an update rather than a creation.
+- Existing suite, not executed: `pnpm exec vitest run packages/registry/src/updaters/update-files.test.ts`.
+- Planned CLI replay: deny replacement of an existing proxy and require unchanged bytes plus skipped status.
+- With overwrite enabled, require updated rather than created status and the intended proxy transformation.
 
 ## Publication-Blockers
 
